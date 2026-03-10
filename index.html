@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="element-heart-icon-free-png.webp">
+
+    <title>Feliz Cumple</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="corazones"></div>
+
+    <div class="fondo oculto-final">
+        <div id="final">
+            <div id="mensaje"></div>
+            <img id="fotoFinal" src="img/img5.jpg" alt="Foto final">
+        </div>
+    </div>
+    
+    <!-- MODALES -->
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <h2>¿Qué día es hoy?</h2>
+            <button onclick="siguiente(1)">Continuar</button>
+        </div>
+    </div>
+    
+    <div class="modal oculto-modal" id="modal2">
+        <div class="modal-content">
+            <h2>Navidad? San Pedro? </h2>
+            <button onclick="siguiente(2)">Continuar</button>
+        </div>
+    </div>
+    
+    <div class="modal oculto-modal" id="modal3">
+        <div class="modal-content">
+            <h2>Creo que hoy pasa algo especial...</h2>
+            <button onclick="siguiente(3)">Continuar</button>
+        </div>
+    </div>
+    
+    <div class="modal oculto-modal" id="modal4">
+        <div class="modal-content">
+            <img src="img/img1.jpg">
+            <p>Una monita linda cumple un año más...</p>
+            <button onclick="siguiente(4)">Continuar</button>
+        </div>
+    </div>
+    
+    <div class="modal oculto-modal" id="modal5">
+        <div class="modal-content">
+            <img src="img/img2.jpg">
+            <p>Nos faltan fotos? Sí, son momentos especiales</p>
+            <button onclick="siguiente(5)">Continuar</button>
+        </div>
+    </div>
+    
+    <div class="modal oculto-modal" id="modal6">
+        <div class="modal-content">
+            <img src="img/img4.jpg">
+            <p>Y son muchos más los que quiero vivir contigo</p>
+            <button onclick="siguiente(6)">Continuar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

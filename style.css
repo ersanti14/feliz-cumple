@@ -1,0 +1,187 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    
+    }
+    
+    body{
+    background:linear-gradient(135deg,#ff6ec7,#8a2be2) !important; 
+    font-family:"Poppins",sans-serif;
+    height: auto;
+    width: 100%;
+    overflow:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    
+    /* CONTENEDOR */
+
+    .fondo{
+    display: flex;
+    width:98%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    background:transparent;
+
+    }
+    
+    /* MENSAJE FINAL */
+    
+    #final{
+        display:flex; /* oculto hasta el último modal */
+        border-radius:20px;
+        height: auto;
+        padding:10px;
+        width:95%;
+        background-color: azure;
+        box-shadow:0 10px 30px rgba(0,0,0,0.4);
+        border:3px solid #ff69b4;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content: center;
+        overflow: auto;
+    }
+    
+    /* Texto final */
+    #mensaje{
+        font-family:"Poppins", sans-serif; /* letra más legible */
+        font-size:1.2em; /* un poco más pequeña */
+        color:#8a2be2; /* si es muy largo, scroll */
+        max-height:auto; /* altura máxima */
+        width:100%;
+        text-align:center;
+    }
+    
+    /* Foto final al final del contenedor */
+    #fotoFinal{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:200px;
+        border-radius:15px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.3);
+        margin-top:5px;
+    }
+    /* MODAL */
+    
+    .modal{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+        background:linear-gradient(135deg,#ff6ec7,#8a2be2) !important; 
+        
+    }
+    .modal-content{
+        border:3px solid #ff69b4;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    max-width:320px;
+    width:100%;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    z-index: 20;
+    }
+    
+    .modal-content h2{
+    font-family:"Dancing Script",cursive;
+    font-size:1.8em;
+    color:#8a2be2;
+    }
+    
+    .modal-content img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:10px;
+    }
+    
+    .modal-content p{
+        color: #8a2be2;
+    font-family:"Dancing Script",cursive;
+    font-size:1.3em;
+    margin-bottom:10px;
+    }
+    
+    /* BOTON */
+    
+    button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4da6;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    }
+    
+    button:hover{
+    background:#ff2f96;
+    }
+    
+   /* Para los modales ocultos */
+.oculto-modal{
+    display:none;
+}
+
+/* Para el contenedor final oculto */
+.oculto-final{
+    display:none;
+}
+    
+    /* ANIMACIONES */
+    
+    @keyframes aparecer{
+    from{
+    opacity:0;
+    transform:translateY(30px);
+    }
+    to{
+    opacity:1;
+    transform:translateY(0);
+    }
+    }
+    
+    /* CORAZONES */
+    
+    .corazones{
+        position:fixed;
+        width:100%;
+        height:100%;
+        pointer-events:none;
+        z-index:-1;
+        }
+    
+    .corazones::before,
+    .corazones::after{
+    content:"💖 💜 💕 💗 💓💖 💜💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓";
+    font-size:30px;
+    position:absolute;
+    align-items: center;
+    animation:flotar 15s linear infinite;
+    }
+    
+    @keyframes flotar{
+    0%{
+    transform:translateY(100vh);
+    opacity:0;
+    }
+    50%{
+    opacity:1;
+    }
+    100%{
+    transform:translateY(-10vh);
+    opacity:0;
+    }
+    }
