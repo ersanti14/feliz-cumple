@@ -1,79 +1,290 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="element-heart-icon-free-png.webp">
-
-    <title>Feliz Cumple</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#F7D6DF">
+    <title>Feliz Cumple💗</title>
+    <link rel="icon" href="element-heart-icon-free-png.webp" type="image/webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap"
-        rel="stylesheet">
-
 </head>
-
 <body>
-    <div class="corazones"></div>
 
-    <div class="fondo oculto-final">
-        <div id="final">
-            <div id="mensaje"></div>
-            <img id="fotoFinal" src="img/img5.jpg" alt="Foto final">
-        </div>
+    <!-- Fondo tipo collage Polaroid organizado con más fotos -->
+    <div class="fondo" aria-hidden="true">
+        <div class="marco-polaroid p1"><img class="slot-img-1" src="img/img1.jpg" alt=""></div>
+        <div class="marco-polaroid p2"><img class="slot-img-2" src="img/img2.jpg" alt=""></div>
+        <div class="marco-polaroid p3"><img class="slot-img-3" src="img/img3.jpg" alt=""></div>
+        <div class="marco-polaroid p4"><img class="slot-img-4" src="img/img4.jpg" alt=""></div>
+        <div class="marco-polaroid p5"><img class="slot-img-5" src="img/img5.jpg" alt=""></div>
+        <div class="marco-polaroid p6"><img class="slot-img-6" src="img/img6.jpg" alt=""></div>
+        <div class="marco-polaroid p7"><img class="slot-img-7" src="img/img7.jpg" alt=""></div>
+        <div class="marco-polaroid p8"><img class="slot-img-8" src="img/img8.jpg" alt=""></div>
+        <div class="marco-polaroid p9"><img class="slot-img-1" src="img/img1.jpg" alt=""></div>
+        <div class="marco-polaroid p10"><img class="slot-img-2" src="img/img2.jpg" alt=""></div>
+        <div class="marco-polaroid p11"><img class="slot-img-3" src="img/img3.jpg" alt=""></div>
+        <div class="marco-polaroid p12"><img class="slot-img-5" src="img/img5.jpg" alt=""></div>
+        <div class="velo-pastel"></div>
     </div>
-    
-    <!-- MODALES -->
-    <div class="modal" id="modal1">
-        <div class="modal-content">
+
+    <!-- Partículas flotantes suaves -->
+    <div id="contenedor-corazones" aria-hidden="true"></div>
+
+    <!-- Modal 1: Con selector de fecha obligatorio (28 de octubre) -->
+    <div class="modal activo" id="modal1">
+        <div class="caja">
+            <div class="indicador-pasos">
+                <span class="punto-paso activo"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+            </div>
+            <div class="icono-burbuja">💗</div>
             <h2>¿Qué día es hoy?</h2>
-            <button onclick="siguiente(1)">Continuar</button>
+            <p class="subtexto-modal">Tengo una pregunta muy importante antes de empezar...</p>
+
+            <div class="bloque-fecha" id="bloqueFecha">
+                <label class="etiqueta-fecha" for="diaFecha">Elige la fecha especial para continuar 📅</label>
+                <div class="selectores-fecha">
+                    <select id="diaFecha" class="select-pastel" onchange="alCambiarFecha()" aria-label="Día">
+                        <option value="">Día</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select id="mesFecha" class="select-pastel" onchange="alCambiarFecha()" aria-label="Mes">
+                        <option value="">Mes</option>
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                </div>
+                <p id="mensajeFecha" class="mensaje-fecha" aria-live="polite"></p>
+            </div>
+
+            <div class="botones-modal">
+                <button class="btn-primario" onclick="siguiente(1)">Continuar ✨</button>
+            </div>
         </div>
     </div>
-    
-    <div class="modal oculto-modal" id="modal2">
-        <div class="modal-content">
-            <h2>Navidad? San Pedro? </h2>
-            <button onclick="siguiente(2)">Continuar</button>
+
+    <!-- Modal 2: Ahora con espacio para foto vertical -->
+    <div class="modal" id="modal2">
+        <div class="caja">
+            <div class="indicador-pasos">
+                <span class="punto-paso"></span>
+                <span class="punto-paso activo"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+            </div>
+            <span class="etiqueta-paso">Pista 1 ✨</span>
+            <div class="marco-foto-modal">
+                <img class="slot-img-2" src="img/img8.jpg" alt="Foto especial modal 2">
+            </div>
+            <h2>¿Navidad? ¿San Pedro? Halloween????</h2>
+            <p class="subtexto-modal">Mmm... no casi, hoy es una fecha mucho más especial...</p>
+            <div class="botones-modal">
+                <button class="btn-secundario" onclick="anterior(2)">Atrás</button>
+                <button class="btn-primario" onclick="siguiente(2)">¿Cuál es? 🌸</button>
+            </div>
         </div>
     </div>
-    
-    <div class="modal oculto-modal" id="modal3">
-        <div class="modal-content">
-            <h2>Creo que hoy pasa algo especial...</h2>
-            <button onclick="siguiente(3)">Continuar</button>
+
+    <!-- Modal 3: Ahora con espacio para foto vertical -->
+    <div class="modal" id="modal3">
+        <div class="caja">
+            <div class="indicador-pasos">
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso activo"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+            </div>
+            <span class="etiqueta-paso">Hoy celebramos 🎂</span>
+            <div class="marco-foto-modal">
+                <img class="slot-img-3" src="img/img3.jpg" alt="Foto especial modal 3">
+            </div>
+            <h2>Hoy es un dia unico para ti</h2>
+            <p class="subtexto-modal">Porque hoy celebras tu vida</p>
+            <div class="botones-modal">
+                <button class="btn-secundario" onclick="anterior(3)">Atrás</button>
+                <button class="btn-primario" onclick="siguiente(3)">Ver recuerdos 📸</button>
+            </div>
         </div>
     </div>
-    
-    <div class="modal oculto-modal" id="modal4">
-        <div class="modal-content">
-            <img src="img/img1.jpg">
-            <p>Una monita linda cumple un año más...</p>
-            <button onclick="siguiente(4)">Continuar</button>
+
+    <!-- Modal 4 -->
+    <div class="modal" id="modal4">
+        <div class="caja">
+            <div class="indicador-pasos">
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso activo"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+            </div>
+            <span class="etiqueta-paso">Recuerdo 1 de 3</span>
+            <div class="marco-foto-modal">
+                <img class="slot-img-7" src="img/img7.jpg" alt="Foto especial 1">
+            </div>
+            <p>La niña mas hermosa cumple un año más...</p>
+            <div class="botones-modal">
+                <button class="btn-secundario" onclick="anterior(4)">Atrás</button>
+                <button class="btn-primario" onclick="siguiente(4)">Siguiente 🤎</button>
+            </div>
         </div>
     </div>
-    
-    <div class="modal oculto-modal" id="modal5">
-        <div class="modal-content">
-            <img src="img/img2.jpg">
-            <p>Nos faltan fotos? Sí, son momentos especiales</p>
-            <button onclick="siguiente(5)">Continuar</button>
+
+    <!-- Modal 5 -->
+    <div class="modal" id="modal5">
+        <div class="caja">
+            <div class="indicador-pasos">
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso activo"></span>
+                <span class="punto-paso"></span>
+            </div>
+            <span class="etiqueta-paso">Recuerdo 2 de 3</span>
+            <div class="marco-foto-modal">
+                <img class="slot-img-6" src="img/img6.jpg" alt="Foto especial 2">
+            </div>
+            <p>Y sera ¿Que nos faltan mas fotos? Seraaaaa que si??? sera(1 foto)</p>
+            <div class="botones-modal">
+                <button class="btn-secundario" onclick="anterior(5)">Atrás</button>
+                <button class="btn-primario" onclick="siguiente(5)">Siguiente 🌸</button>
+            </div>
         </div>
     </div>
-    
-    <div class="modal oculto-modal" id="modal6">
-        <div class="modal-content">
-            <img src="img/img4.jpg">
-            <p>Y son muchos más los que quiero vivir contigo</p>
-            <button onclick="siguiente(6)">Continuar</button>
+
+    <!-- Modal 6 -->
+    <div class="modal" id="modal6">
+        <div class="caja">
+            <div class="indicador-pasos">
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso"></span>
+                <span class="punto-paso activo"></span>
+            </div>
+            <span class="etiqueta-paso">Recuerdo 3 de 3</span>
+            <div class="marco-foto-modal">
+                <img class="slot-img-4" src="img/img4.jpg" alt="Foto especial 3">
+            </div>
+            <p>Obvio y espero me permitas muchas mas...</p>
+            <div class="botones-modal">
+                <button class="btn-secundario" onclick="anterior(6)">Atrás</button>
+                <button class="btn-primario btn-especial" onclick="siguiente(6)">Abrir mi sorpresa 🎁</button>
+            </div>
         </div>
     </div>
+
+    <!-- Pantalla Final -->
+    <main class="final" id="final">
+        <div class="tarjeta-final">
+            <span class="insignia-cumple">✨ Para alguien muy especial ✨</span>
+            <h1 class="titulo">¡Feliz Cumpleaños!💗🎂</h1>
+
+            <div class="contenedor-foto-principal">
+                <div class="polaroid-principal">
+                    <div class="cinta-washi"></div>
+                    <img id="fotoFinal" class="slot-img-4" src="img/img5.jpg" alt="Foto principal de cumpleaños">
+                    <span class="leyenda-polaroid" id="leyendaPrincipal">VALERIA - 28 de Octubre✨</span>
+                </div>
+            </div>
+
+            <div class="hoja-carta">
+                <div class="encabezado-carta"></div>
+                <p id="mensaje"></p>
+            </div>
+
+            <!-- Mini galería interactiva para tocar fotos en el celular -->
+            <div class="galeria-recuerdos">
+                <h3 class="subtitulo-galeria">Pequeños momentos 📸</h3>
+                <p class="ayuda-galeria">Toca cualquier foto para verla en grande arriba</p>
+                <div class="cuadricula-recuerdos">
+                    <div class="tarjeta-recuerdo" onclick="destacarFoto(this, 'Celebrando tu vida 🎂')">
+                        <img class="slot-img-1" src="img/img1.jpg" alt="Recuerdo 1">
+                        <span>Celebrando tu vida 🎂</span>
+                    </div>
+                    <div class="tarjeta-recuerdo" onclick="destacarFoto(this, 'Flores para ti 🌷')">
+                        <img class="slot-img-2" src="img/img2.jpg" alt="Recuerdo 2">
+                        <span>Flores para ti 🌷</span>
+                    </div>
+                    <div class="tarjeta-recuerdo" onclick="destacarFoto(this, 'Tardes bonitas 🌸')">
+                        <img class="slot-img-3" src="img/img3.jpg" alt="Recuerdo 3">
+                        <span>Tardes bonitas 🌸</span>
+                    </div>
+                    <div class="tarjeta-recuerdo" onclick="destacarFoto(this, 'Una juntos🎈')">
+                        <img class="slot-img-4" src="img/img4.jpg" alt="Recuerdo 4">
+                        <span>Una juntos🎈</span>
+                    </div>
+                    <div class="tarjeta-recuerdo" onclick="destacarFoto(this, 'La mas preciosa🤎')">
+                        <img class="slot-img-5" src="img/img5.jpg" alt="Recuerdo 5">
+                        <span>La mas preciosa🤎</span>
+                    </div>
+                    <div class="tarjeta-recuerdo" onclick="destacarFoto(this, 'Otra y muchas más por vivir ✨')">
+                        <img class="slot-img-6" src="img/img6.jpg" alt="Recuerdo 6">
+                        <span>Otra y muchas más por vivir ✨</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acciones-finales">
+                <button class="btn-secundario" onclick="reiniciarEscritura()">Repetir mensaje 💌</button>
+                <button class="btn-primario" onclick="volverAlInicio()">Ver desde el inicio 🔄</button>
+            </div>
+        </div>
+    </main>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>

@@ -1,187 +1,673 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    
-    }
-    
-    body{
-    background:linear-gradient(135deg,#ff6ec7,#8a2be2) !important; 
-    font-family:"Poppins",sans-serif;
-    height: auto;
+/* ==========================================================================
+   Paleta Pastel Café & Rosa Pastel — Optimizado para Teléfono (Mobile-First)
+   Tipografía limpia, redondeada y muy legible (sin cursiva)
+   ========================================================================== */
+:root {
+    --bg-crema: #FFF8F5;
+    --bg-rosa-suave: #FCE8EC;
+    --bg-cafe-suave: #F3E5DE;
+    --cafe-oscuro: #4E362E;
+    --cafe-medio: #7D5E53;
+    --cafe-pastel: #C8A99E;
+    --rosa-pastel: #F4BBC9;
+    --rosa-acento: #E2859E;
+    --rosa-profundo: #C96A83;
+    --blanco-tarjeta: rgba(255, 252, 250, 0.94);
+    --sombra-suave: 0 12px 32px rgba(92, 64, 56, 0.14);
+    --sombra-polaroid: 0 10px 24px rgba(92, 64, 56, 0.16);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
     width: 100%;
-    overflow:auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
-    
-    /* CONTENEDOR */
+    min-height: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(155deg, var(--bg-crema) 0%, var(--bg-rosa-suave) 48%, var(--bg-cafe-suave) 100%);
+    color: var(--cafe-oscuro);
+}
 
-    .fondo{
+/* ==================== FONDO COLLAGE POLAROID ORGANIZADO ==================== */
+.fondo {
+    position: fixed;
+     inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(244, 187, 201, 0.38) 0%, transparent 45%),
+        radial-gradient(circle at 82% 80%, rgba(200, 169, 158, 0.35) 0%, transparent 45%);
+}
+
+.marco-polaroid {
+    position: absolute;
+    background: #FFFDFB;
+    padding: 6px 6px 20px 6px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-polaroid);
+    border: 1px solid rgba(200, 169, 158, 0.35);
+    opacity: 0.72;
+    animation: flotarSuave 9s ease-in-out infinite alternate;
+    transition: opacity 0.4s ease;
+}
+
+.marco-polaroid::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 38px;
+    height: 13px;
+    background: rgba(244, 187, 201, 0.65);
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.marco-polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+    filter: saturate(1.03) contrast(1.02);
+}
+
+/* Distribución en bordes para que se vea hermoso en teléfono y PC */
+.p1  { width: 92px; height: 118px; top: 2%;    left: 3%;   --rot: -9deg;  animation-delay: 0s;   }
+.p2  { width: 92px; height: 118px; top: 2%;    right: 3%;  --rot: 8deg;   animation-delay: -2s;  }
+.p3  { width: 88px; height: 114px; top: 22%;   left: -3%;  --rot: 6deg;   animation-delay: -4s;  }
+.p4  { width: 88px; height: 114px; top: 23%;   right: -3%; --rot: -7deg;  animation-delay: -1s;  }
+.p5  { width: 90px; height: 116px; top: 46%;   left: -4%;  --rot: -8deg;  animation-delay: -3s;  }
+.p6  { width: 90px; height: 116px; top: 47%;   right: -4%; --rot: 7deg;   animation-delay: -5s;  }
+.p7  { width: 92px; height: 118px; bottom: 18%; left: 2%;  --rot: 5deg;   animation-delay: -2.5s;}
+.p8  { width: 92px; height: 118px; bottom: 18%; right: 2%; --rot: -6deg;  animation-delay: -6s;  }
+.p9  { width: 86px; height: 110px; bottom: 2%;  left: 8%;  --rot: -5deg;  animation-delay: -1.5s;}
+.p10 { width: 86px; height: 110px; bottom: 2%;  right: 8%; --rot: 6deg;   animation-delay: -4.5s;}
+.p11 { width: 84px; height: 108px; top: 11%;   left: 26%;  --rot: 4deg;   animation-delay: -3.5s; opacity: 0.42; }
+.p12 { width: 84px; height: 108px; bottom: 9%; right: 26%; --rot: -4deg;  animation-delay: -5.5s; opacity: 0.42; }
+
+@keyframes flotarSuave {
+    0% {
+        transform: translateY(0px) rotate(var(--rot, 0deg)) scale(1);
+    }
+    100% {
+        transform: translateY(-9px) rotate(calc(var(--rot, 0deg) + 2.5deg)) scale(1.02);
+    }
+}
+
+.velo-pastel {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255, 248, 245, 0.25) 0%, rgba(252, 232, 236, 0.58) 100%);
+    backdrop-filter: blur(1.5px);
+}
+
+/* ==================== PARTÍCULAS Y CORAZONES FLOTANTES ==================== */
+#contenedor-corazones {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.corazon-flotante {
+    position: absolute;
+    bottom: -40px;
+    user-select: none;
+    pointer-events: none;
+    animation: subirCorazon linear forwards;
+    opacity: 0.75;
+}
+
+@keyframes subirCorazon {
+    0% {
+        transform: translateY(0) scale(0.7) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.78;
+    }
+    85% {
+        opacity: 0.78;
+    }
+    100% {
+        transform: translateY(-108dvh) scale(1.15) rotate(22deg);
+        opacity: 0;
+    }
+}
+
+/* ==================== MODALES INTERACTIVOS (MOBILE-FIRST) ==================== */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
     display: flex;
-    width:98%;
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 14px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.42s ease, visibility 0.42s ease;
+}
+
+.modal.activo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.caja {
+    width: 100%;
+    max-width: 390px;
+    max-height: 94dvh;
+    overflow-y: auto;
+    background: var(--blanco-tarjeta);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 26px;
+    padding: 20px 18px 18px;
+    text-align: center;
+    box-shadow: var(--sombra-suave);
+    border: 1.5px solid rgba(244, 187, 201, 0.65);
+    transform: translateY(18px) scale(0.96);
+    transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+}
+
+.modal.activo .caja {
+    transform: translateY(0) scale(1);
+}
+
+/* Indicador de pasos */
+.indicador-pasos {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
     margin-bottom: 10px;
-    height: auto;
+}
+
+.punto-paso {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(200, 169, 158, 0.45);
+    transition: all 0.3s ease;
+}
+
+.punto-paso.activo {
+    width: 24px;
+    background: linear-gradient(90deg, var(--rosa-acento), var(--cafe-medio));
+}
+
+.etiqueta-paso {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--cafe-medio);
+    background: rgba(243, 229, 222, 0.9);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(200, 169, 158, 0.4);
+}
+
+.icono-burbuja {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FCE8EC, #F3E5DE);
+    display: flex;
     align-items: center;
     justify-content: center;
-    background:transparent;
-
-    }
-    
-    /* MENSAJE FINAL */
-    
-    #final{
-        display:flex; /* oculto hasta el último modal */
-        border-radius:20px;
-        height: auto;
-        padding:10px;
-        width:95%;
-        background-color: azure;
-        box-shadow:0 10px 30px rgba(0,0,0,0.4);
-        border:3px solid #ff69b4;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content: center;
-        overflow: auto;
-    }
-    
-    /* Texto final */
-    #mensaje{
-        font-family:"Poppins", sans-serif; /* letra más legible */
-        font-size:1.2em; /* un poco más pequeña */
-        color:#8a2be2; /* si es muy largo, scroll */
-        max-height:auto; /* altura máxima */
-        width:100%;
-        text-align:center;
-    }
-    
-    /* Foto final al final del contenedor */
-    #fotoFinal{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width:200px;
-        border-radius:15px;
-        box-shadow:0 8px 20px rgba(0,0,0,0.3);
-        margin-top:5px;
-    }
-    /* MODAL */
-    
-    .modal{
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        padding:20px;
-        background:linear-gradient(135deg,#ff6ec7,#8a2be2) !important; 
-        
-    }
-    .modal-content{
-        border:3px solid #ff69b4;
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-    max-width:320px;
-    width:100%;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-    z-index: 20;
-    }
-    
-    .modal-content h2{
-    font-family:"Dancing Script",cursive;
-    font-size:1.8em;
-    color:#8a2be2;
-    }
-    
-    .modal-content img{
-    width:100%;
-    border-radius:15px;
-    margin-bottom:10px;
-    }
-    
-    .modal-content p{
-        color: #8a2be2;
-    font-family:"Dancing Script",cursive;
-    font-size:1.3em;
-    margin-bottom:10px;
-    }
-    
-    /* BOTON */
-    
-    button{
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    background:#ff4da6;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    }
-    
-    button:hover{
-    background:#ff2f96;
-    }
-    
-   /* Para los modales ocultos */
-.oculto-modal{
-    display:none;
+    font-size: 1.75rem;
+    box-shadow: 0 6px 15px rgba(226, 133, 158, 0.22);
+    border: 2px solid #FFF;
 }
 
-/* Para el contenedor final oculto */
-.oculto-final{
-    display:none;
+.caja h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.42rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--cafe-oscuro);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
 }
-    
-    /* ANIMACIONES */
-    
-    @keyframes aparecer{
-    from{
-    opacity:0;
-    transform:translateY(30px);
-    }
-    to{
-    opacity:1;
-    transform:translateY(0);
-    }
-    }
-    
-    /* CORAZONES */
-    
-    .corazones{
-        position:fixed;
-        width:100%;
-        height:100%;
-        pointer-events:none;
-        z-index:-1;
-        }
-    
-    .corazones::before,
-    .corazones::after{
-    content:"💖 💜 💕 💗 💓💖 💜💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓💖 💜 💕 💗 💓";
-    font-size:30px;
-    position:absolute;
+
+.caja p,
+.subtexto-modal {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.96rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--cafe-medio);
+    margin-bottom: 12px;
+}
+
+/* ==================== SELECTOR DE FECHA (MODAL 1) ==================== */
+.bloque-fecha {
+    background: linear-gradient(145deg, #FFFDFB, #FCE8EC);
+    border: 1.5px solid rgba(226, 133, 158, 0.55);
+    border-radius: 18px;
+    padding: 13px 12px 11px;
+    margin: 6px 0 14px;
+    box-shadow: inset 0 1px 4px rgba(200, 169, 158, 0.16);
+}
+
+.etiqueta-fecha {
+    display: block;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--cafe-oscuro);
+    margin-bottom: 9px;
+}
+
+.selectores-fecha {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 8px;
+}
+
+.select-pastel {
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(200, 169, 158, 0.7);
+    background: #FFFDFB;
+    color: var(--cafe-oscuro);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(92, 64, 56, 0.06);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-pastel:focus {
+    border-color: var(--rosa-acento);
+    box-shadow: 0 0 0 3px rgba(226, 133, 158, 0.22);
+}
+
+.mensaje-fecha {
+    min-height: 20px;
+    margin-top: 8px;
+    margin-bottom: 0 !important;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.84rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+    transition: color 0.25s ease;
+}
+
+.mensaje-fecha.error {
+    color: #C84B6B !important;
+}
+
+.mensaje-fecha.exito {
+    color: #4A7C59 !important;
+}
+
+@keyframes sacudirSuave {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+.sacudir {
+    animation: sacudirSuave 0.4s ease;
+}
+
+/* ==================== MARCO DE FOTO EN MODALES (MÁS ALTO VERTICALMENTE) ==================== */
+.marco-foto-modal {
+    background: #FFFDFB;
+    padding: 8px 8px 14px 8px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(92, 64, 56, 0.14);
+    border: 1px solid rgba(200, 169, 158, 0.45);
+    margin: 4px auto 12px;
+    max-width: 248px;
+    transform: rotate(-1deg);
+}
+
+.marco-foto-modal img {
+    width: 100%;
+    aspect-ratio: 3 / 3.9;
+    max-height: 265px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Botones de navegación en los modales */
+.botones-modal {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
     align-items: center;
-    animation:flotar 15s linear infinite;
+    margin-top: 4px;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.93rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.btn-primario {
+    flex: 1;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, var(--rosa-acento) 0%, var(--cafe-medio) 100%);
+    color: #FFFDFB;
+    box-shadow: 0 6px 16px rgba(201, 106, 131, 0.34);
+}
+
+.btn-primario:hover {
+    box-shadow: 0 8px 20px rgba(201, 106, 131, 0.45);
+}
+
+.btn-secundario {
+    padding: 12px 15px;
+    background: rgba(243, 229, 222, 0.9);
+    color: var(--cafe-oscuro);
+    border: 1px solid rgba(200, 169, 158, 0.55);
+}
+
+.btn-especial {
+    background: linear-gradient(135deg, #E2859E 0%, #B87B7C 50%, #7D5E53 100%);
+    font-size: 0.96rem;
+}
+
+/* ==================== PANTALLA FINAL DE CUMPLEAÑOS ==================== */
+.final {
+    position: relative;
+    z-index: 5;
+    min-height: 100dvh;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 14px 44px;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.final.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.tarjeta-final {
+    width: 100%;
+    max-width: 470px;
+    background: rgba(255, 252, 250, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 28px;
+    padding: 22px 16px 24px;
+    box-shadow: var(--sombra-suave);
+    border: 1.5px solid rgba(244, 187, 201, 0.72);
+    text-align: center;
+}
+
+.insignia-cumple {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--cafe-oscuro);
+    background: linear-gradient(90deg, rgba(244, 187, 201, 0.55), rgba(243, 229, 222, 0.85));
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(226, 133, 158, 0.4);
+}
+
+.titulo {
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(1.75rem, 6vw, 2.3rem);
+    font-weight: 700;
+    color: var(--cafe-oscuro);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 10px rgba(244, 187, 201, 0.5);
+}
+
+/* ==================== FOTO FINAL MÁS GRANDE VERTICALMENTE ==================== */
+.contenedor-foto-principal {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.polaroid-principal {
+    position: relative;
+    background: #FFFDFB;
+    padding: 10px 10px 16px 10px;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(92, 64, 56, 0.18);
+    border: 1.5px solid rgba(200, 169, 158, 0.55);
+    width: 100%;
+    max-width: 325px;
+    transform: rotate(-1deg);
+}
+
+.cinta-washi {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 86px;
+    height: 22px;
+    background: rgba(244, 187, 201, 0.75);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#fotoFinal {
+    width: 100%;
+    aspect-ratio: 3 / 4.15;
+    min-height: 310px;
+    max-height: 430px;
+    object-fit: cover;
+    border-radius: 13px;
+    display: block;
+}
+
+.leyenda-polaroid {
+    display: block;
+    margin-top: 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--cafe-medio);
+}
+
+/* ==================== ESPACIO DEL TEXTO / CARTA MÁS AMPLIO EN TELÉFONO ==================== */
+.hoja-carta {
+    position: relative;
+    background: linear-gradient(180deg, #FFFDFB 0%, #FDF6F2 100%);
+    border-radius: 20px;
+    padding: 20px 18px;
+    margin-bottom: 22px;
+    text-align: left;
+    border: 1.5px solid rgba(200, 169, 158, 0.55);
+    box-shadow: inset 0 2px 8px rgba(200, 169, 158, 0.14), 0 6px 18px rgba(92, 64, 56, 0.07);
+    min-height: 300px;
+    max-height: 520px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+#mensaje {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.72;
+    color: var(--cafe-oscuro);
+    white-space: pre-line;
+}
+
+/* ==================== MINI ÁLBUM INTERACTIVO DE FOTOS (MÁS ALTO VERTICALMENTE) ==================== */
+.galeria-recuerdos {
+    margin-top: 6px;
+    margin-bottom: 18px;
+}
+
+.subtitulo-galeria {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cafe-oscuro);
+    margin-bottom: 2px;
+}
+
+.ayuda-galeria {
+    font-size: 0.82rem;
+    color: var(--cafe-medio);
+    margin-bottom: 12px;
+}
+
+.cuadricula-recuerdos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
+}
+
+.tarjeta-recuerdo {
+    background: #FFFDFB;
+    padding: 7px 7px 11px 7px;
+    border-radius: 14px;
+    border: 1px solid rgba(200, 169, 158, 0.45);
+    box-shadow: 0 5px 14px rgba(92, 64, 56, 0.1);
+    cursor: pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.tarjeta-recuerdo:hover,
+.tarjeta-recuerdo:active {
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--rosa-acento);
+    box-shadow: 0 8px 18px rgba(226, 133, 158, 0.28);
+}
+
+.tarjeta-recuerdo img {
+    width: 100%;
+    aspect-ratio: 3 / 3.9;
+    object-fit: cover;
+    border-radius: 9px;
+    display: block;
+}
+
+.tarjeta-recuerdo span {
+    display: block;
+    margin-top: 7px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--cafe-medio);
+}
+
+.acciones-finales {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.acciones-finales button {
+    flex: 1 1 140px;
+}
+
+/* ==================== AJUSTES RESPONSIVE PARA MÓVIL Y ESCRITORIO ==================== */
+@media (max-width: 390px) {
+    .caja {
+        padding: 16px 14px 15px;
     }
-    
-    @keyframes flotar{
-    0%{
-    transform:translateY(100vh);
-    opacity:0;
+    .caja h2 {
+        font-size: 1.28rem;
     }
-    50%{
-    opacity:1;
+    .marco-foto-modal {
+        max-width: 222px;
     }
-    100%{
-    transform:translateY(-10vh);
-    opacity:0;
+    .marco-foto-modal img {
+        max-height: 235px;
     }
+    .polaroid-principal {
+        max-width: 295px;
     }
+    #fotoFinal {
+        min-height: 280px;
+        max-height: 390px;
+    }
+    .hoja-carta {
+        min-height: 280px;
+        max-height: 480px;
+        padding: 16px 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .marco-polaroid {
+        opacity: 0.85;
+    }
+    .p1, .p2, .p7, .p8   { width: 135px; height: 170px; }
+    .p3, .p4, .p5, .p6   { width: 128px; height: 162px; }
+    .p9, .p10, .p11, .p12 { width: 122px; height: 154px; }
+    .p3 { left: 4%; }
+    .p4 { right: 4%; }
+    .p5 { left: 6%; }
+    .p6 { right: 6%; }
+
+    .caja {
+        max-width: 430px;
+        padding: 26px 24px 22px;
+    }
+
+    .marco-foto-modal {
+        max-width: 270px;
+    }
+
+    .marco-foto-modal img {
+        max-height: 300px;
+    }
+
+    .tarjeta-final {
+        max-width: 520px;
+        padding: 30px 26px;
+    }
+
+    .cuadricula-recuerdos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
